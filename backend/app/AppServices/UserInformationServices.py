@@ -30,6 +30,7 @@ class UserInformationServices:
 
         # TODO: Estos datos los tenemos que mandar a una función que se encargue de hacer la predicción
         # death_prediction = self.spark_get_prediction(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium
+        print("Predicción: ", death_prediction)
         return death_prediction
         
 

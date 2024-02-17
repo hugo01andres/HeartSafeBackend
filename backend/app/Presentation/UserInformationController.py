@@ -10,14 +10,16 @@ UserInformation, GetPredictionResponse = user_information_dto(api)
 @api.route('/', strict_slashes=False)
 class UserInformationController(Resource):
     @inject
-    def __init__(self, user_information_services: UserInformationServices):
+    def __init__(self, user_information_services: UserInformationServices, **kwargs):
         self.user_information_services = user_information_services
+        super().__init__(**kwargs)
 
     @api.expect(UserInformation)
     @api.marshal_with(GetPredictionResponse)
     def post(self):
-        prediction = self.user_information_services.get_prediction(**api.payload)
-        return prediction
+        death_prediction = self.user_information_services.get_prediction(**api.payload)
+        print("Predicción Controller: ", death_prediction)
+        return {'death_prediction': death_prediction}, 200
 
     # @api.expect(UserInformation)
     # @api.marshal_with(GetPredictionResponse)

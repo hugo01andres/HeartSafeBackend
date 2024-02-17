@@ -9,7 +9,7 @@ def user_information_dto(api):
     UserInformation = api.model('GetUserInfo', {
         'age': fields.Integer(description='Edad', required=False),
         'anaemia': fields.Integer(description='Anemia', required=False),
-        'creatinine_phosphokinase': fields.Integer(description='Creatine phosphokinase', required=False),
+        'creatine_phosphokinase': fields.Integer(description='Creatine phosphokinase', required=False),
         'diabetes': fields.Integer(description='Diabetes', required=False),
         'ejection_fraction': fields.Integer(description='Ejection fraction', required=False),
         'high_blood_pressure': fields.Integer(description='High blood pressure', required=False),
@@ -23,3 +23,5 @@ def user_information_dto(api):
     GetPredictionResponse = api.model('GetPredictionResponse', {
         'death_prediction': fields.String(description='Prediction', required=True)
     })
+
+    return UserInformation, GetPredictionResponse

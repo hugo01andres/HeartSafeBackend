@@ -18,5 +18,8 @@ api = Api(app, version='1.0', title='API', description='API for the backend')
 Swagger(app)
 
 # Import the routes
+from app.Presentation.UserInformationController import api as user_information_ns
+api.add_namespace(user_information_ns)
 
 # Dependency injection
+FlaskInjector(app=app)
