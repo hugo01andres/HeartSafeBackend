@@ -36,12 +36,10 @@ class UserInformationServices:
 
     def get_healthy_recipes(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum):
         print("UserRequest.get_healthy_recipes")
-        healthy_recipes = ("Receta 1", "Receta 2", "Receta 3")
-        # healthy_recipes = self.ia_functions.get_healthy_recipes(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum)
+        healthy_recipes = self.ia_functions.get_healthy_recipes(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum)
         return healthy_recipes
 
     def get_healthy_exercises(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine):
         print("UserRequest.get_healthy_exercises")
-        healthy_exercises = ("Ejercicio 1", "Ejercicio 2", "Ejercicio 3")
-        # healthy_exercises = self.ia_functions.get_healthy_exercises(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine)
-        return ("Ejercicio 1", "Ejercicio 2", "Ejercicio 3")
+        healthy_exercises = self.ia_functions.get_healthy_exercises(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine)
+        return healthy_exercises
