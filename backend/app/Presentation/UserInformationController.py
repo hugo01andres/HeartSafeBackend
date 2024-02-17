@@ -16,7 +16,8 @@ class UserInformationController(Resource):
     @api.expect(UserInformation)
     @api.marshal_with(GetPredictionResponse)
     def post(self):
-        return self.user_information_services.get_prediction(**api.payload)
+        prediction = self.user_information_services.get_prediction(**api.payload)
+        return prediction
 
     # @api.expect(UserInformation)
     # @api.marshal_with(GetPredictionResponse)
