@@ -11,7 +11,7 @@ class UserInformationServices:
 
 
 
-    def get_prediction(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking, time):
+    def get_prediction(self, age=None, anaemia=None, creatine_phosphokinase=None, diabetes=None, ejection_fraction=None, high_blood_pressure=None, platelets=None, serum_creatinine=None, serum_sodium=None, sex=None, smoking=None, time=None):
         death_prediction = "10%"
         print("UserRequest.get_information")
         # Imprimir toda la información
