@@ -6,22 +6,25 @@ type InputProps = {
   error?: string;
   children?: React.ReactNode;
   inputClass?: string;
+  labelClass?: string;
 };
 
 export default function Input({
   label,
   error,
   children,
-  inputClass = "",
+  inputClass,
+  labelClass,
 }: InputProps) {
-  console.log(cn("border rounded-md"));
-
   return (
     <div className="flex flex-col gap-2">
-      {label && <label>{label}</label>}
-      {React.cloneElement(children as React.ReactElement, {
-        className: cn("border rounded-md", inputClass),
-      })}
+      <label className={cn("inline-flex flex-col gap-2", labelClass)}>
+        {label}
+        {React.cloneElement(children as React.ReactElement, {
+          className: cn("border p-2 py-1 rounded-md", inputClass),
+        })}
+      </label>
+
       {error && <p>{error}</p>}
     </div>
   );
