@@ -3,13 +3,21 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import RootPage from "@/pages/RootPage";
+import PatientAnalysisPage from "@/pages/PatientAnalysisPage";
 import RootLayout from "@/layout/RootLayout";
+import { AnalysisFormProvider } from "@/contexts/AnalysisFormContext";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route index element={<RootPage />} />
+      <Route
+        index
+        element={
+          <AnalysisFormProvider>
+            <PatientAnalysisPage />
+          </AnalysisFormProvider>
+        }
+      />
     </Route>
   )
 );
