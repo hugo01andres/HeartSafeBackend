@@ -8,4 +8,11 @@ export default defineConfig({
     host: true,
     port: 5173,
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+      "@components": "/src/components",
+      "@assets": "/src/assets",
+    },
+  },
 });
