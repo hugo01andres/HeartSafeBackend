@@ -3,7 +3,7 @@ from flask_restx import Resource, Namespace, fields
 from injector import inject
 from app.Presentation.DTO.UserInformationDTO import user_information_dto
 
-api = Namespace('UserInformation', description='User information related operations')
+api = Namespace('userinformation', description='User information related operations')
 
 UserInformation, GetPredictionResponse = user_information_dto(api)
 
