@@ -1,11 +1,11 @@
-import Form from "@components/Form";
+import Form from "@/shared/components/Form";
 import {
   AnalysisFormBiochemical,
   AnalysisFormGeneral,
   AnalysisFormStepper,
-} from "@/components/PatientAnalysis";
-import Button from "../Button";
-import { useAnalysisFormContext } from "@/hooks/useAnalysisFormContext";
+} from "@modules/patient_analysis/components";
+import Button from "@shared/components/Button";
+import { useAnalysisFormContext } from "@/modules/patient_analysis/hooks/useAnalysisFormContext";
 
 export default function AnalysisForm() {
   const { handleSubmit: submit } = useAnalysisFormContext();

@@ -1,5 +1,5 @@
-import Button from "@components/Button";
-import { useAnalysisFormContext } from "@/hooks/useAnalysisFormContext";
+import Button from "@/shared/components/Button";
+import { useAnalysisFormContext } from "@/modules/patient_analysis/hooks/useAnalysisFormContext";
 
 export default function AnalysisFormStepper() {
   const { setStep, ...state } = useAnalysisFormContext();

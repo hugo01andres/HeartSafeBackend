@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/utilities/cn";
+import { cn } from "@/shared/utilities/cn";
 
 type InputProps = {
   label?: string;

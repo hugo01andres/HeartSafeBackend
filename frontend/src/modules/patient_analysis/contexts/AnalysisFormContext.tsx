@@ -1,5 +1,5 @@
-import { useAnalysisForm } from "@/hooks/useAnalysisForm";
-import { AnalysisFormState } from "@/types/AnalysisFormState";
+import { useAnalysisForm } from "@/modules/patient_analysis/hooks/useAnalysisForm";
+import { AnalysisFormState } from "@modules/patient_analysis/types/AnalysisFormState";
 import { createContext } from "react";
 
 export type AnalysisProviderProps = {

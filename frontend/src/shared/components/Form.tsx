@@ -1,4 +1,4 @@
-import { cn } from "@/utilities/cn";
+import { cn } from "@/shared/utilities/cn";
 
 interface FormProps extends React.HTMLProps<HTMLFormElement> {
   title?: string;

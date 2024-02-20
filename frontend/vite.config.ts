@@ -13,6 +13,9 @@ export default defineConfig({
       "@": "/src",
       "@components": "/src/components",
       "@assets": "/src/assets",
+      "@layouts": "/src/layouts",
+      "@modules": "/src/modules",
+      "@shared": "/src/shared",
     },
   },
 });
