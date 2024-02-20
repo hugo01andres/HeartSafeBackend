@@ -1,5 +1,5 @@
-import { ButtonType } from "@/types/buttonType";
-import { cn } from "@/utilities/cn";
+import { ButtonType } from "@/shared/types/buttonType";
+import { cn } from "@/shared/utilities/cn";
 
 interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   type?: ButtonType;

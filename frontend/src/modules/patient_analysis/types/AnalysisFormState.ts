@@ -1,5 +1,5 @@
-import { ActionWithPayload } from "./utility";
-import { GenderType } from "./genderType";
+import { ActionWithPayload } from "../../../shared/types/utility";
+import { GenderType } from "../../../shared/types/genderType";
 
 export type AnalysisFormPayload = {
   age: number;
@@ -37,9 +37,5 @@ export type SetValueAction = ActionWithPayload<
   }
 >;
 export type SetStepAction = ActionWithPayload<"SET_STEP", number>;
-export type HandleSubmitAction = ActionWithPayload<"HANDLE_SUBMIT", void>;
 
-export type AnalysisFormActionTypes =
-  | SetValueAction
-  | SetStepAction
-  | HandleSubmitAction;
+export type AnalysisFormActionTypes = SetValueAction | SetStepAction;

@@ -2,7 +2,7 @@ import {
   AnalysisFormActionTypes,
   AnalysisFormPayload,
   AnalysisFormState,
-} from "@/types/AnalysisFormState";
+} from "@modules/patient_analysis/types/AnalysisFormState";
 import { useReducer } from "react";
 
 const initialState: AnalysisFormState = {
@@ -40,9 +40,6 @@ const reducer = (state: AnalysisFormState, action: AnalysisFormActionTypes) => {
         ...state,
         step: action.payload,
       };
-    case "HANDLE_SUBMIT":
-      console.log("Submitting form");
-      return state;
     default:
       return state;
   }
@@ -63,7 +60,7 @@ export const useAnalysisForm = () => {
   };
 
   const handleSubmit = () => {
-    dispatch({ type: "HANDLE_SUBMIT", payload: undefined });
+    console.log("Form submitted");
   };
 
   return { ...state, setValue, setStep, handleSubmit };

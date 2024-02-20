@@ -1,6 +1,6 @@
-import Input from "@components/Input";
-import NumberInput from "@components/InputNumber";
-import { useAnalysisFormContext } from "@/hooks/useAnalysisFormContext";
+import Input from "@/shared/components/Input";
+import NumberInput from "@/shared/components/InputNumber";
+import { useAnalysisFormContext } from "@/modules/patient_analysis/hooks/useAnalysisFormContext";
 
 export default function AnalysisFormBiochemical() {
   const { setValue, ...state } = useAnalysisFormContext();

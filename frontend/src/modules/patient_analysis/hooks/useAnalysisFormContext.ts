@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AnalysisFormContext } from "@/contexts/AnalysisFormContext";
+import { AnalysisFormContext } from "@/modules/patient_analysis/contexts/AnalysisFormContext";
 
 export function useAnalysisFormContext() {
   const context = useContext(AnalysisFormContext);
