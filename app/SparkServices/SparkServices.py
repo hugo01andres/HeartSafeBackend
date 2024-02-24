@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 class SparkServices:
     def __init__(self):
         print("SparkServices initialized")
-        spark = SparkSession.builder.appName("Flask and Spark: ").master('spark://spark-master:7077').getOrCreate()
+        self.spark = SparkSession.builder.appName("Flask and Spark: ").master('spark://spark-master:7077').getOrCreate()
 
     def get_spark_session(self):
         print("get_spark_session called")
