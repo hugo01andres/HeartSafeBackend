@@ -7,7 +7,7 @@ services:
       - "9090:8080"
       - "7077:7077"
     volumes: 
-      - ./backend/app/data:/home/data:rw
+      - ./app/data:/home/data:rw
 
   spark-worker-1:
     image: bitnami/spark:latest
@@ -20,30 +20,18 @@ services:
       SPARK_WORKER_MEMORY: 1g
       SPARK_MASTER_URL: spark://spark-master:7077
     volumes: 
-      - ./backend/app/data:/home/data:rw
+      - ./app/data:/home/data:rw
 
   backend:
     build:
-      context: ./backend
+      context: .
       dockerfile: ./dockerfiles/Dockerfile.dev
     depends_on:
       - spark-worker-1
     ports:
       - "5000:5000"
     volumes: 
-      - ./backend/:/app:rw
-      - ./backend/app/data:/home/data:rw
+      - ./:/app:rw
+      - ./app/data:/home/data:rw
     tty: true
-    stdin_open: true
-  
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: ./dockerfiles/Dockerfile.dev
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    stdin_open: true
-    tty: true
+    stdin_open: true  
