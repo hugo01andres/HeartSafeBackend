@@ -24,4 +24,6 @@ class SparkServices:
             print(e)
             return 'File not found!', 404
 
-        
+    
+    def probar_test(self):
+         print('Probando el servicio de Spark')
