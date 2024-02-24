@@ -2,6 +2,7 @@ from app.AppServices.UserInformationServices import UserInformationServices
 from flask_restx import Resource, Namespace, fields
 from injector import inject
 from app.Presentation.DTO.UserInformationDTO import user_information_dto
+from app.SparkServices.SparkServices import SparkServices
 
 api = Namespace('userinformation', description='User information related operations')
 
@@ -25,3 +26,27 @@ class UserInformationController(Resource):
     # @api.marshal_with(GetPredictionResponse)
     # def get(self):
     #     return self.user_information_services.get_prediction(**api.payload)
+
+
+@api.route('/run-analysis', strict_slashes=False)
+class RunAnalysis(Resource):
+    @inject
+    def __init__(self, spark_services: SparkServices, **kwargs):
+        self.spark_services = spark_services
+        super().__init__(**kwargs)
+
+    def get(self):
+        result = self.spark_services.run_analysis()
+        return {'result': result}, 200
+
+
+@api.route('/read-file', strict_slashes=False)
+class ReadFile(Resource):
+    @inject
+    def __init__(self, spark_services: SparkServices, **kwargs):
+        self.spark_services = spark_services
+        super().__init__(**kwargs)
+
+    def get(self):
+        result = self.spark_services.read_file()
+        return {'result': result}, 200
