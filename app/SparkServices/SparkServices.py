@@ -29,7 +29,10 @@ class SparkServices:
          print('Probando el servicio de Spark')
 
     def get_prediction(self, age=None, anaemia=None, creatinine_phosphokinase=None, diabetes=None, ejection_fraction=None, high_blood_pressure=None, platelets=None, serum_creatinine=None, serum=None):
+        print("prediccion: ")
         print("get_prediction called")
 
     def get_graficas(self):
+        print("Grafica 1")
+        print("Grafica 2")
         print("get_graficas called")
