@@ -3,7 +3,6 @@
   "dockerComposeFile": "../docker-compose.yml",
   "service": "backend",
   "workspaceFolder": "/app", 
-  "postCreateCommand": "git config --global --add safe.directory /workspace",
   "portsAttributes": {
     "5000": {
       "label": "Application",
