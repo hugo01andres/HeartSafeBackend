@@ -10,17 +10,6 @@ api = Namespace('userinformation', description='User information related operati
 UserInformation, GetPredictionResponse = user_information_dto(api)
 
 
-""" Este controlador puede servir si tenemos que guardar datos o algo, por mientras esta deprecado y no se utilizad """
-# @api.route('/', strict_slashes=False)
-# class UserInformationController(Resource):
-#     @inject
-#     def __init__(self, user_information_services: UserInformationServices,spark_services: SparkServices, **kwargs):
-#         self.user_information_services = user_information_services
-#         self.spark_services = spark_services
-#         super().__init__(**kwargs)
-
-
-
 
 """ Este controlador es el que se encarga de hacer la predicción de la muerte del paciente """
 @api.route('/analysisprediction', strict_slashes=False)
@@ -52,7 +41,7 @@ class RunAnalysis(Resource):
                 "death_prediction": "47%"
             }
         """
-        death_prediction = self.spark_services.get_prediction(**api.payload)
+        death_prediction = self.spark_services.get_prediction(**api.payload) #TODO: Emiliano y Raul la estan haciendo
         print("Predicción Controller: ", death_prediction)
         # TODO: Retornar death_prediction
         return {'death_prediction': "47%"}, 200
