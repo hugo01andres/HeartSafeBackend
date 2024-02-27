@@ -13,9 +13,9 @@ def user_information_dto(api):
         'diabetes': fields.Boolean(description='Diabetes', required=False),
         'ejection_fraction': fields.Integer(description='Ejection fraction', required=False),
         'high_blood_pressure': fields.Boolean(description='High blood pressure', required=False),
-        'platelets': fields.Decimal(description='Platelets', required=False),
+        'platelets': fields.Float(description='Platelets', required=False),
         'serum_creatinine': fields.Integer(description='Serum creatinine', required=False),
-        'serum_sodium': fields.Decimal(description='Serum sodium', required=False),
+        'serum_sodium': fields.Float(description='Serum sodium', required=False),
         'sex': fields.Integer(description='sex', required=False),
         'smoking': fields.Boolean(description='Smoking', required=False)
     })
