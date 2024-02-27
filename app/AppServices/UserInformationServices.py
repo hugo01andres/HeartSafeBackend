@@ -1,15 +1,9 @@
-# Tenemos que importar a la IA para que nos haga la predicción
-# from spark import Spark
-# from ia import IA
+
 
 class UserInformationServices:
 
     def __init__(self):
         print("UserRequest.__init__")
-        # self.spark_functions = Spark()
-        # self.ia_functions = IA()
-
-
 
     def get_prediction(self, age=None, anaemia=None, creatine_phosphokinase=None, diabetes=None, ejection_fraction=None, high_blood_pressure=None, platelets=None, serum_creatinine=None, serum_sodium=None, sex=None, smoking=None, time=None):
         death_prediction = "10%"
@@ -32,14 +26,20 @@ class UserInformationServices:
         # death_prediction = self.spark_get_prediction(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium
         print("Predicción: ", death_prediction)
         return death_prediction
-        
 
-    def get_healthy_recipes(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum):
-        print("UserRequest.get_healthy_recipes")
-        healthy_recipes = self.ia_functions.get_healthy_recipes(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum)
-        return healthy_recipes
 
-    def get_healthy_exercises(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine):
-        print("UserRequest.get_healthy_exercises")
-        healthy_exercises = self.ia_functions.get_healthy_exercises(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine)
-        return healthy_exercises
+    def make_pdf(self, graficas, healthy_recipes, healthy_exercises):
+        print("UserRequest.make_pdf")
+        # Creame un pdf con las graficas, las recetas y los ejercicios
+
+
+
+    # def get_healthy_recipes(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum):
+    #     print("UserRequest.get_healthy_recipes")
+    #     healthy_recipes = self.ia_functions.get_healthy_recipes(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum)
+    #     return healthy_recipes
+
+    # def get_healthy_exercises(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine):
+    #     print("UserRequest.get_healthy_exercises")
+    #     healthy_exercises = self.ia_functions.get_healthy_exercises(age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine)
+    #     return healthy_exercises
