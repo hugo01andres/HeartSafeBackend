@@ -36,3 +36,4 @@ class SparkServices:
         print("Grafica 1")
         print("Grafica 2")
         print("get_graficas called")
+        return "Grafica 1", "Grafica 2"

@@ -2,6 +2,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet
+import base64
+import os
 
 class IAServices:
     def __init__(self):
@@ -9,13 +11,20 @@ class IAServices:
     
     def get_healthy_recipes(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum):
         print("IA.get_healthy_recipes")
-        return ("Receta 1", "Receta 2", "Receta 3")
-    
+        return "Receta 1, Receta 2, Receta 3"
+        
     def get_healthy_exercises(self, age, anaemia, creatine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine):
         print("IA.get_healthy_exercises")
-        return ("Ejercicio 1", "Ejercicio 2", "Ejercicio 3")
+        return "Ejercicio 1, Ejercicio 2, Ejercicio 3"
+
 
     def make_pdf(self, graficas, healthy_recipes, healthy_exercises):
+        """
+
+        Crea un documento PDF con la información de las gráficas, recetas y ejercicios
+        y retorna el pdf en base64
+
+        """
         print("IA.make_pdf")
         # Define el documento PDF y el nombre del archivo
         pdf_name = "Analisis_de_paro_cardiaco.pdf"
@@ -81,4 +90,11 @@ class IAServices:
 
             # Construir el PDF
         document.build(flowables)
-        return "PDF creado"
+
+        with open(pdf_name, "rb") as pdf_file:
+            encoded_string = base64.b64encode(pdf_file.read()).decode('utf-8')
+
+        # Elimina el PDF
+        os.remove(pdf_name)
+
+        return encoded_string
