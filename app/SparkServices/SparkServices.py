@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from matplotlib import pyplot as plt
 class SparkServices:
     def __init__(self):
         print("SparkServices initialized")
@@ -33,7 +34,24 @@ class SparkServices:
         print("get_prediction called")
 
     def get_graficas(self):
-        print("Grafica 1")
-        print("Grafica 2")
-        print("get_graficas called")
+        try:
+            df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
+        except Exception as e:   
+            print(f"file not found: {str(e)}")
+            return 'File not found!', 404
+        pandas_df = df.select('age').toPandas()
+        
+        # Crear la gráfica (ejemplo: histograma de la edad de los pacientes)
+        plt.figure(figsize=(10, 6))
+        plt.hist(pandas_df['age'], bins=20, color='skyblue', edgecolor='black')
+        plt.title('Distribution of Age in Heart Failure Patients')
+        plt.xlabel('Age')
+        plt.ylabel('Frequency')
+        plt.grid(axis='y', alpha=0.75)
+        
+        # Guardar la gráfica en un archivo PNG
+        plt.savefig('/home/data/age_distribution_histogram.png')
+
+
+        
         return "Grafica 1", "Grafica 2"
