@@ -9,7 +9,7 @@ def user_information_dto(api):
     UserInformation = api.model('GetUserInfo', {
         'age': fields.Integer(description='Edad', required=False),
         'anaemia': fields.Boolean(description='Anemia', required=False),
-        'creatine_phosphokinase': fields.Integer(description='Creatine phosphokinase', required=False),
+        'creatinine_phosphokinase': fields.Integer(description='Creatine phosphokinase', required=False),
         'diabetes': fields.Boolean(description='Diabetes', required=False),
         'ejection_fraction': fields.Integer(description='Ejection fraction', required=False),
         'high_blood_pressure': fields.Boolean(description='High blood pressure', required=False),
