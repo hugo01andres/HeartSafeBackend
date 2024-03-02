@@ -82,4 +82,4 @@ class AnalysisPDF(Resource):
         healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
         healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
         pdf = self.ia_services.make_pdf(graficas, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
-        return {'pdf': pdf}, 200
+        return {'pdf': pdf, 'file_name': 'AnalisisCardiaco.pdf'}, 200
