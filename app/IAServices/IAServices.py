@@ -4,14 +4,82 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, Page
 from reportlab.lib.styles import getSampleStyleSheet
 import base64
 import os
+from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain import PromptTemplate
+from langchain.callbacks import get_openai_callback
+from langchain_openai import OpenAI
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_core.prompts import ChatPromptTemplate
 
 class IAServices:
+    load_dotenv()
     def __init__(self):
         print("IA.__init__")
-    
+
     def get_healthy_recipes(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking):
-        print("IA.get_healthy_recipes")
-        return "Receta 1, Receta 2, Receta 3"
+        print(age)
+        print(anaemia)
+        if anaemia == False:
+            anaemia = "No tiene anaemia"
+        print(creatinine_phosphokinase)
+        print(diabetes)
+        if diabetes == False:
+            diabetes = "No tiene diabetes"
+        print(ejection_fraction)
+        print(high_blood_pressure)
+        if high_blood_pressure == False:
+            high_blood_pressure = "No tiene presión alta"
+        print(platelets)
+        print(serum_creatinine)
+        print(serum_sodium)
+        print(sex)
+        if sex == 0:
+            sex = "Es Mujer"
+        else:
+            sex = "Es Hombre"
+        print(smoking)
+        if smoking == False:
+            smoking = "No fuma"
+        else:
+            smoking = "Si Fuma"
+
+        if os.environ.get("OPENAI_API_KEY"):
+            llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.5, max_tokens=500)
+            system_message = "Solo contesta con la receta no digas nada mas. Eres un agente experto en dar recetas de cocina saludable para personas con la sigueinte información: "
+            human_message = f"""
+            Age: {age}
+            Anaemia: {anaemia}
+            Creatinine Phosphokinase: {creatinine_phosphokinase}
+            Diabetes: {diabetes} 
+            Ejection Fraction: {ejection_fraction}
+            High Blood Pressure: {high_blood_pressure}
+            Platelets: {platelets}
+            Serum Creatinine: {serum_creatinine}
+            Serum Sodium: {serum_sodium}
+            Sex: {sex}
+            Smoker: {smoking}
+            """
+            messages = [SystemMessage(content=system_message), 
+                        HumanMessage(content=human_message)]
+            print(messages[0].content)
+            with get_openai_callback() as cb:
+                response_content = llm.invoke(messages)
+                response = response_content.content
+                print(cb)
+                print(response)
+        else:
+            response = """No tienes api key pero te dejare un Lorem Ipsum de como se veiria Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar 
+            pellentesque habitant morbi tristique senectus et. 
+            1. -
+            2. -
+            3. -"""
+        
+
+        return response
         
     def get_healthy_exercises(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking):
         print("IA.get_healthy_exercises")
@@ -68,10 +136,9 @@ class IAServices:
         flowables.append(Spacer(1, 12))
 
         # Contenido del plan de alimentación
-        for i in range(5):  # Asumiendo que hay 5 párrafos de contenido
-            paragraph_plan_alimentacion = "<para>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar pellentesque habitant morbi tristique senectus et.</para>"
-            flowables.append(Paragraph(paragraph_plan_alimentacion, styles['Normal']))
-            flowables.append(Spacer(1, 12))
+        paragraph_plan_alimentacion = f"<para>{healthy_recipes}</para>"
+        flowables.append(Paragraph(paragraph_plan_alimentacion, styles['Normal']))
+        flowables.append(Spacer(1, 12))
 
         # Título de la sección de ejercicio
         title_plan_ejercicio = "<h1>Plan de ejercicios</h1>"

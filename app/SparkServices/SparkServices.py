@@ -37,7 +37,9 @@ class SparkServices:
         print("get_prediction called")
 
 
-
+    def get_graficas(self):
+        print("get_graficas called")
+        return "Grafica 1", "Grafica 2", "Grafica 3", "Grafica 4", "Grafica 5"
 
 
     def get_grafica_age(self):
