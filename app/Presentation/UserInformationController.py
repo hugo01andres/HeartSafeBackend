@@ -21,7 +21,7 @@ class RunAnalysis(Resource):
         super().__init__(**kwargs)
 
     # Obtenemos la prediccion
-    @api.expect(UserInformation)
+    @api.expect(UserInformation)    
     @api.marshal_with(GetPredictionResponse)
     def post(self):
         """
@@ -58,7 +58,7 @@ class AnalysisPDF(Resource):
         super().__init__(**kwargs)
 
         # Obtenemos un pdf con la información
-    @api.expect(UserInformation)
+    @api.expect(UserInformation)    
     def post(self):
         """
         Generar un PDF con la información de las graficas y las recetas saludables y ejercicios saludables
@@ -78,6 +78,9 @@ class AnalysisPDF(Resource):
                 "pdf": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3dy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmF"
             }
         """
+
+        if (api.payload['share_data'] & api.payload['heart_problems_recently']): self.spark_services.persist_data(api.payload)
+
         graficas = self.spark_services.get_graficas() #TODO: Emiliano y Raul la estan haciendo
         healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
         healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
