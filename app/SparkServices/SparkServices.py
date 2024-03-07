@@ -3,13 +3,30 @@ from matplotlib import pyplot as plt
 import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.io as pio
+import pandas as pd
+
 class SparkServices:
     def __init__(self):
         print("SparkServices initialized")
-        self.spark = SparkSession.builder.appName("Flask and Spark: ").master('spark://spark-master:7077').getOrCreate()
+        self.spark = SparkSession.builder.appName("Flask and Spark: ").master('spark://spark-master:7077').getOrCreate()    
 
     def get_spark_session(self):
         print("get_spark_session called")
+
+    def persist_data(self, userInformation):
+        try:
+            df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
+            df_pandas = df.toPandas()
+
+            print(df_pandas)
+        
+            userInformation.pop('share_data', None)
+            userInformation.pop('heart_problems_recently', None)
+            userInformation['DEATH_EVENT'] = 0
+            df_pandas = pd.concat([df_pandas, pd.DataFrame(userInformation, index=[0])], ignore_index=True)
+            df_pandas.to_csv('/home/data/heart_failure_clinical_records_dataset.csv', index=False)
+        except Exception as e:   
+            print(e)
 
     
     def run_analysis(self):
@@ -35,9 +52,6 @@ class SparkServices:
     def get_prediction(self, age=None, anaemia=None, creatinine_phosphokinase=None, diabetes=None, ejection_fraction=None, high_blood_pressure=None, platelets=None, serum_creatinine=None, serum=None):
         print("prediccion: ")
         print("get_prediction called")
-
-
-
 
 
     def get_grafica_age(self):
