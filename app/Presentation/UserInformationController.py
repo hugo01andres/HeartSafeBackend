@@ -81,8 +81,8 @@ class AnalysisPDF(Resource):
 
         if (api.payload['share_data'] & api.payload['heart_problems_recently']): self.spark_services.persist_data(api.payload)
 
-        # graficas = self.spark_services.get_graficas() #TODO: Emiliano y Raul la estan haciendo
-        # healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
-        # healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
-        # pdf = self.ia_services.make_pdf(graficas, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
-        return {'pdf': api.payload}, 200
+        graficas = self.spark_services.get_graficas() #TODO: Emiliano y Raul la estan haciendo
+        healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
+        healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
+        pdf = self.ia_services.make_pdf(graficas, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
+        return {'pdf': pdf, 'file_name': 'AnalisisCardiaco.pdf'}, 200
