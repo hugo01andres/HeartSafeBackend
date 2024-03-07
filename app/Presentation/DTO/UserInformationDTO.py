@@ -17,7 +17,9 @@ def user_information_dto(api):
         'serum_creatinine': fields.Integer(description='Serum creatinine', required=False),
         'serum_sodium': fields.Float(description='Serum sodium', required=False),
         'sex': fields.Integer(description='sex', required=False),
-        'smoking': fields.Boolean(description='Smoking', required=False)
+        'smoking': fields.Boolean(description='Smoking', required=False),
+        'heart_problems_recently': fields.Boolean(description='The user has experienced heart problems in the last 6 months', required=False),
+        'share_data': fields.Boolean(description='Indicates if the user wants to share their data for future analysis', required=False)
     })
     GetPredictionResponse = api.model('GetPredictionResponse', {
         'death_prediction': fields.String(description='Prediction', required=True)
