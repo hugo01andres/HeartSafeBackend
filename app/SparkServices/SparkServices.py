@@ -95,7 +95,64 @@ class SparkServices:
         pio.write_image(fig, '/app/app/images/smoking_death_event_count.jpg')
         
         return "Grafica 1", "Grafica 2"
+    
 
+    def get_grafica_anaemia(self):
+        try:
+            df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
+        except Exception as e:   
+            print(f"file not found: {str(e)}")
+            return 'File not found!', 404
+        
+        # Generar la gráfica con Plotly Express
+        fig = px.pie(df, values='anaemia',names='DEATH_EVENT', title='Anaemia Death Event Ratio')
+        fig.update_traces(textposition='inside', textinfo='percent+label') 
+        fig.update_layout(
+            title_text="Anaemia Death Event Count"
+        ) 
+
+        # Guardar la gráfica en un archivo JPEG
+        pio.write_image(fig, '/app/app/images/anaemia_death_event_count.jpg')
+        
+        return "Grafica 1", "Grafica 2"
+    
+    def get_grafica__diabetes(self):
+        try:
+            df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
+        except Exception as e:   
+            print(f"file not found: {str(e)}")
+            return 'File not found!', 404
+        
+        # Generar la gráfica con Plotly Express
+        fig = px.pie(df, values='diabetes',names='DEATH_EVENT', title='Diabetes Death Event Ratio')
+        fig.update_traces(textposition='inside', textinfo='percent+label') 
+        fig.update_layout(
+            title_text="Diabetes Death Event Count"
+        ) 
+
+        # Guardar la gráfica en un archivo JPEG
+        pio.write_image(fig, '/app/app/images/diabetes_death_event_count.jpg')
+        
+        return "Grafica 1", "Grafica 2"
+    
+    def get_grafica_high_blood_pressure(self):
+        try:
+            df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
+        except Exception as e:   
+            print(f"file not found: {str(e)}")
+            return 'File not found!', 404
+        
+        # Generar la gráfica con Plotly Express
+        fig = px.pie(df, values='high_blood_pressure',names='DEATH_EVENT', title='High Blood Pressure Death Event Ratio')
+        fig.update_traces(textposition='inside', textinfo='percent+label') 
+        fig.update_layout(
+            title_text="High Blood Pressure Death Event Count"
+        ) 
+
+        # Guardar la gráfica en un archivo JPEG
+        pio.write_image(fig, '/app/app/images/high_blood_pressure_death_event_count.jpg')
+        
+        return "Grafica 1", "Grafica 2"
             
     # def get_grafica_creatinine_phosphokinase(self):
     #     try:
