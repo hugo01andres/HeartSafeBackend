@@ -144,7 +144,7 @@ class IAServices:
         return response
 
 
-    def make_pdf(self, graficas, healthy_recipes, healthy_exercises):
+    def make_pdf(self, json_graficas_y_descripciones, healthy_recipes, healthy_exercises):
         """
 
         Crea un documento PDF con la información de las gráficas, recetas y ejercicios
@@ -169,19 +169,25 @@ class IAServices:
         flowables.append(Paragraph(description, styles['Normal']))
         flowables.append(Spacer(1, 12))
 
-        # Incluyendo gráficas e imágenes
-        for i in range(1, 6):
+        # Incluyendo gráficas y descripcion
+        for grafica_desc in json_graficas_y_descripciones:
             # Añadir la gráfica
-            grafica = f"<para>Gráfica {i}</para>"
-            # graph = f"grafica_{i}.png"  # Reemplaza esto con la ruta a tus archivos de imagen
-            # flowables.append(Image(graph, width=400, height=200))
-            # flowables.append(Spacer(1, 12))
-            flowables.append(Paragraph(grafica, styles['Normal']))
-
-            # Añadir la descripción de la gráfica
-            graph_description = f"<para>Explicación: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>"
-            flowables.append(Paragraph(graph_description, styles['Normal']))
+            flowables.append(Image(grafica_desc['graficas'], width=400, height=200))
             flowables.append(Spacer(1, 12))
+            # Añadir la descripción
+            flowables.append(Paragraph(grafica_desc['descripciones'], styles['Normal']))
+            flowables.append(Spacer(1, 12))
+        
+
+        # Incluyendo gráficas e imágenes
+        # for grafica in graficas:
+        #     # Añadir la gráfica
+        #     flowables.append(Image(grafica, width=400, height=200))
+        #     flowables.append(Spacer(1, 12))
+        #     graph_description = f"<para>Explicación: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</para>"
+        #     flowables.append(Paragraph(graph_description, styles['Normal']))
+        #     flowables.append(Spacer(1, 12))
+
 
         # Página nueva
         flowables.append(PageBreak())

@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from matplotlib import pyplot as plt
 import matplotlib.pyplot as plt
@@ -53,13 +54,30 @@ class SparkServices:
         print("prediccion: ")
         print("get_prediction called")
 
-        
-    def get_graficas(self):
-        print("get_graficas called")
-        return "Grafica 1", "Grafica 2", "Grafica 3", "Grafica 4", "Grafica 5"
+    def get_graficas_y_descripciones(self):
+        """
+        Llamo a las funciones que generan las gráficas y las descripciones
+
+        Returns:
+            Retorno una lista de jsons con la información de las gráficas y las descripciones
+            [{"graficas":"imagen","descripcion":"Lorem ipsum...}]
+        """
+        json_graficas_y_descripciones = [self.get_grafica_y_descripcion_age(),
+                    self.get_grafica_y_descripcion_smooking(),
+                    self.get_grafica_y_descripcion_anaemia(),
+                    self.get_grafica__y_descripcion_diabetes(),
+                    self.get_grafica_y_descripcion_high_blood_pressure()]
+        return json_graficas_y_descripciones
 
       
-    def get_grafica_age(self):
+    def get_grafica_y_descripcion_age(self):
+        """
+        Generar una gráfica de la edad de los pacientes y una descripción
+
+        Returns:
+            Retorna un json con la información de la gráfica y la descripción
+            {"graficas":"imagen","descripcion":"Lorem ipsum..."}
+        """
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
         except Exception as e:   
@@ -74,10 +92,14 @@ class SparkServices:
 
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/age_distribution_histogram.jpg')
-        
-        return "Grafica 1", "Grafica 2"
+
+        # Retornar la ruta de la gráfica y una descripción
+        get_graficas_age = '/app/app/images/age_distribution_histogram.jpg'
+        get_descripcion_age = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+
+        return {"graficas":get_graficas_age, "descripciones":get_descripcion_age}
     
-    def get_grafica_smooking(self):
+    def get_grafica_y_descripcion_smooking(self):
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
         except Exception as e:   
@@ -93,11 +115,13 @@ class SparkServices:
 
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/smoking_death_event_count.jpg')
+        get_graficas_diabetes = '/app/app/images/diabetes_death_event_count.jpg'
+        get_descripcion_diabetes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
         
-        return "Grafica 1", "Grafica 2"
+        return {"graficas":get_graficas_diabetes,"descripciones":get_descripcion_diabetes}
     
 
-    def get_grafica_anaemia(self):
+    def get_grafica_y_descripcion_anaemia(self):
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
         except Exception as e:   
@@ -113,10 +137,12 @@ class SparkServices:
 
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/anaemia_death_event_count.jpg')
+        get_graficas_anaemia = '/app/app/images/anaemia_death_event_count.jpg'
+        get_descripcion_anaemia = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
         
-        return "Grafica 1", "Grafica 2"
+        return {"graficas":get_graficas_anaemia,"descripciones":get_descripcion_anaemia}
     
-    def get_grafica__diabetes(self):
+    def get_grafica__y_descripcion_diabetes(self):
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
         except Exception as e:   
@@ -132,10 +158,12 @@ class SparkServices:
 
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/diabetes_death_event_count.jpg')
+        get_graficas_anaemia = '/app/app/images/anaemia_death_event_count.jpg'
+        get_descripcion_anaemia = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
         
-        return "Grafica 1", "Grafica 2"
+        return {"graficas":get_graficas_anaemia,"descripciones":get_descripcion_anaemia}
     
-    def get_grafica_high_blood_pressure(self):
+    def get_grafica_y_descripcion_high_blood_pressure(self):
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
         except Exception as e:   
@@ -151,8 +179,10 @@ class SparkServices:
 
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/high_blood_pressure_death_event_count.jpg')
+        get_graficas_high_blood_pressure = '/app/app/images/high_blood_pressure_death_event_count.jpg'
+        get_descripcion_hight_blood_pressure = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
         
-        return "Grafica 1", "Grafica 2"
+        return {"graficas":get_graficas_high_blood_pressure,"descripciones":get_descripcion_hight_blood_pressure}
             
     # def get_grafica_creatinine_phosphokinase(self):
     #     try:
