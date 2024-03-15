@@ -83,7 +83,7 @@ class AnalysisPDF(Resource):
         if 'share_data' in data and 'heart_problems_recently' in data: self.spark_services.persist_data(api.payload)
         #if (data['share_data'] and data['heart_problems_recently']): self.spark_services.persist_data(api.payload)
 
-        json_graficas_y_descripciones = self.spark_services.get_graficas_y_descripcion() #Imagenes
+        json_graficas_y_descripciones = self.spark_services.get_graficas_y_descripciones() #Imagenes
         healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
         healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
         pdf = self.ia_services.make_pdf(json_graficas_y_descripciones, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
