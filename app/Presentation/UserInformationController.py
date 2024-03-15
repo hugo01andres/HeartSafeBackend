@@ -78,11 +78,13 @@ class AnalysisPDF(Resource):
                 "pdf": "JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgaHR0cDovL3d3dy5yZXBvcnRsYWIuY29tCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmF"
             }
         """
+        data = api.payload.copy()
+        # Si data existe en el diccionario share_data y heart_problems_recently
+        if 'share_data' in data and 'heart_problems_recently' in data: self.spark_services.persist_data(api.payload)
+        #if (data['share_data'] and data['heart_problems_recently']): self.spark_services.persist_data(api.payload)
 
-        if (api.payload['share_data'] & api.payload['heart_problems_recently']): self.spark_services.persist_data(api.payload)
-
-        graficas = self.spark_services.get_graficas() #TODO: Emiliano y Raul la estan haciendo
+        json_graficas_y_descripciones = self.spark_services.get_graficas_y_descripcion() #Imagenes
         healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo
         healthy_exercises = self.ia_services.get_healthy_exercises(**api.payload) # TODO: Hugo la esta haciendo
-        pdf = self.ia_services.make_pdf(graficas, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
+        pdf = self.ia_services.make_pdf(json_graficas_y_descripciones, healthy_recipes, healthy_exercises) # TODO: Completarla, solamente esta la estructura
         return {'pdf': pdf, 'file_name': 'AnalisisCardiaco.pdf'}, 200

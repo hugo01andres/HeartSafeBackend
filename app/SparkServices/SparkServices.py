@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from matplotlib import pyplot as plt
 import matplotlib.pyplot as plt
@@ -54,9 +55,35 @@ class SparkServices:
         print("get_prediction called")
 
         
-    def get_graficas(self):
-        print("get_graficas called")
-        return "Grafica 1", "Grafica 2", "Grafica 3", "Grafica 4", "Grafica 5"
+    def get_graficas_y_descripcion(self):
+        self.get_grafica_age()
+        self.get_grafica_smooking()
+        self.get_grafica_anaemia()
+        self.get_grafica__diabetes()
+        self.get_grafica_high_blood_pressure()
+        graficas = []
+        # si la imagen de age_distribution_histogram existe
+        if os.path.isfile('/app/app/images/age_distribution_histogram.jpg'):
+            get_graficas_age = '/app/app/images/age_distribution_histogram.jpg'
+            get_descripcion_age = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            graficas.append({"graficas":get_graficas_age, "descripciones":get_descripcion_age})
+        if os.path.isfile('/app/app/images/smoking_death_event_count.jpg'):
+            get_graficas_smooking = '/app/app/images/smoking_death_event_count.jpg'
+            get_descripcion_smoking = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            graficas.append({"graficas":get_graficas_smooking,"descripciones":get_descripcion_smoking})
+        if os.path.isfile('/app/app/images/anaemia_death_event_count.jpg'):
+            get_graficas_anaemia = '/app/app/images/anaemia_death_event_count.jpg'
+            get_descripcion_anaemia = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            graficas.append({"graficas":get_graficas_anaemia,"descripciones":get_descripcion_anaemia})
+        if os.path.isfile('/app/app/images/diabetes_death_event_count.jpg'):
+            get_graficas_diabetes = '/app/app/images/diabetes_death_event_count.jpg'
+            get_descripcion_diabetes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            graficas.append({"graficas":get_graficas_diabetes,"descripciones":get_descripcion_diabetes})
+        if os.path.isfile('/app/app/images/high_blood_pressure_death_event_count.jpg'):
+            get_graficas_high_blood_pressure = '/app/app/images/high_blood_pressure_death_event_count.jpg'
+            get_descripcion_hight_blood_pressure = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            graficas.append({"graficas":get_graficas_high_blood_pressure,"descripciones":get_descripcion_hight_blood_pressure})
+        return graficas
 
       
     def get_grafica_age(self):
