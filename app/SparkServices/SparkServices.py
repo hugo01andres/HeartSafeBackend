@@ -116,9 +116,9 @@ class SparkServices:
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/smoking_death_event_count.jpg')
         get_graficas_diabetes = '/app/app/images/diabetes_death_event_count.jpg'
-        get_descripcion_diabetes = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+        get_descripcion_smooking = "Fumar daña los vasos sanguíneos y aumenta la presión arterial, lo que puede sobrecargar el corazón y aumentar el riesgo de fallo cardiaco. Dejar de fumar es fundamental para mejorar la salud cardiovascular y reducir este riesgo."
         
-        return {"graficas":get_graficas_diabetes,"descripciones":get_descripcion_diabetes}
+        return {"graficas":get_graficas_diabetes,"descripciones":get_descripcion_smooking}
     
 
     def get_grafica_y_descripcion_anaemia(self):
@@ -138,7 +138,7 @@ class SparkServices:
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/anaemia_death_event_count.jpg')
         get_graficas_anaemia = '/app/app/images/anaemia_death_event_count.jpg'
-        get_descripcion_anaemia = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+        get_descripcion_anaemia = "La anemia puede poner una carga adicional en el corazón al reducir la cantidad de oxígeno que se transporta a los tejidos. Para mejorar la anemia y reducir su impacto en el fallo cardiaco, es importante tratar la causa subyacente, tomar suplementos de hierro si es necesario, considerar transfusiones de sangre en casos graves, seguir una dieta rica en nutrientes y controlar otras condiciones médicas."
         
         return {"graficas":get_graficas_anaemia,"descripciones":get_descripcion_anaemia}
     
@@ -159,9 +159,9 @@ class SparkServices:
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/diabetes_death_event_count.jpg')
         get_graficas_anaemia = '/app/app/images/anaemia_death_event_count.jpg'
-        get_descripcion_anaemia = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+        get_descripcion_diabetes = "La diabetes puede aumentar el riesgo de enfermedades cardíacas, incluido el fallo cardiaco, debido al daño que causa a los vasos sanguíneos y los nervios. Para mejorar la salud del corazón en personas con diabetes, es crucial controlar los niveles de azúcar en la sangre, la presión arterial y el colesterol, adoptar un estilo de vida saludable y seguir el plan de tratamiento recomendado."
         
-        return {"graficas":get_graficas_anaemia,"descripciones":get_descripcion_anaemia}
+        return {"graficas":get_graficas_anaemia,"descripciones":get_descripcion_diabetes}
     
     def get_grafica_y_descripcion_high_blood_pressure(self):
         try:
@@ -180,84 +180,8 @@ class SparkServices:
         # Guardar la gráfica en un archivo JPEG
         pio.write_image(fig, '/app/app/images/high_blood_pressure_death_event_count.jpg')
         get_graficas_high_blood_pressure = '/app/app/images/high_blood_pressure_death_event_count.jpg'
-        get_descripcion_hight_blood_pressure = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+        get_descripcion_hight_blood_pressure = "La presión arterial alta sobrecarga el corazón y aumenta el riesgo de fallo cardiaco. Para mejorar, se pueden hacer cambios en el estilo de vida, como seguir una dieta baja en sodio, hacer ejercicio regularmente y reducir el estrés. Además, es importante seguir el plan de tratamiento médico según lo recetado."
         
         return {"graficas":get_graficas_high_blood_pressure,"descripciones":get_descripcion_hight_blood_pressure}
             
-    # def get_grafica_creatinine_phosphokinase(self):
-    #     try:
-    #         df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
-    #     except Exception as e:   
-    #         print(f"file not found: {str(e)}")
-    #         return 'File not found!', 404
-    #     pandas_df = df.select('creatinine_phosphokinase').toPandas()  
-    #     # Crear la gráfica (ejemplo: histograma de la edad de los pacientes)
-    #     plt.figure(figsize=(10, 6))
-    #     plt.hist(pandas_df['creatinine_phosphokinase'], bins=20, color='skyblue', edgecolor='black')
-    #     plt.title('Distribution of creatinine_phosphokinase in Heart Failure Patients')
-    #     plt.xlabel('creatinine_phosphokinase')
-    #     plt.ylabel('Frequency')
-    #     plt.grid(axis='y', alpha=0.75)
-    #     # Guardar la gráfica en un archivo PNG
-    #     plt.savefig('/app/app/images/creatinine_phosphokinase_distribution_histogram.png')
-    #     return "Grafica 1", "Grafica 2"
     
-    # def get_grafica_ejection_fraction(self):
-    #     try:
-    #         df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
-    #     except Exception as e:   
-    #         print(f"file not found: {str(e)}")
-    #         return 'File not found!', 404
-    #     pandas_df = df.select('ejection_fraction').toPandas()        
-    #     # Crear la gráfica (ejemplo: histograma de la edad de los pacientes)
-
-    #     plt.figure(figsize=(10, 6))
-    #     plt.hist(pandas_df['ejection_fraction'], bins=20, color='skyblue', edgecolor='black')
-    #     plt.title('Distribution of ejection_fraction in Heart Failure Patients')
-    #     plt.xlabel('ejection_fraction')
-    #     plt.ylabel('Frequency')
-    #     plt.grid(axis='y', alpha=0.75)
-
-        
-    #     plt.savefig('/app/app/images/ejection_fraction_distribution_histogram.png')
-    #     return "Grafica 1", "Grafica 2"
-
-    # def get_grafica_platelets(self):
-    #     try:
-    #         df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
-    #     except Exception as e:   
-    #         print(f"file not found: {str(e)}")
-    #         return 'File not found!', 404
-    #     pandas_df = df.select('platelets').toPandas()        
-    #     # Crear la gráfica (ejemplo: histograma de la edad de los pacientes)
-
-    #     plt.figure(figsize=(10, 6))
-    #     plt.hist(pandas_df['platelets'], bins=20, color='skyblue', edgecolor='black')
-    #     plt.title('Distribution of platelets in Heart Failure Patients')
-    #     plt.xlabel('platelets')
-    #     plt.ylabel('Frequency')
-    #     plt.grid(axis='y', alpha=0.75)
-
-        
-    #     plt.savefig('/app/app/images/platelets_distribution_histogram.png')
-    #     return "Grafica 1", "Grafica 2"
-    
-    # def get_grafica_serum_sodium(self):
-    #     try:
-    #         df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
-    #     except Exception as e:   
-    #         print(f"file not found: {str(e)}")
-    #         return 'File not found!', 404
-    #     pandas_df = df.select('serum_sodium').toPandas()        
-    #     # Crear la gráfica (ejemplo: histograma de la edad de los pacientes)
-
-    #     plt.figure(figsize=(10, 6))
-    #     plt.hist(pandas_df['serum_sodium'], bins=20, color='skyblue', edgecolor='black')
-    #     plt.title('Distribution of serum_sodium in Heart Failure Patients')
-    #     plt.xlabel('serum_sodium')
-    #     plt.ylabel('Frequency')
-    #     plt.grid(axis='y', alpha=0.75)
-
-        
-    #     plt.savefig('/app/app/images/serum_sodium_distribution_histogram.png')
-    #     return "Grafica 1", "Grafica 2"
