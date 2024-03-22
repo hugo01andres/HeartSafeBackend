@@ -50,7 +50,7 @@ class SparkServices:
         # Generar la gráfica con Plotly Express
         fig = px.box(df, x='sex', y='age', points="all")
         fig.update_layout(
-            title_text="Gender wise Age Spread - Male = 1 Female =0"
+            title_text="Diferencia de edad según el género - Masculino = 1 Femenino =0"
         )       
 
         # Guardar la gráfica en un archivo JPEG
@@ -69,7 +69,7 @@ class SparkServices:
         fig = px.pie(df, values='smoking',names='DEATH_EVENT', title='Smoking Death Event Ratio')
         fig.update_traces(textposition='inside', textinfo='percent+label') 
         fig.update_layout(
-            title_text="Smoking Death Event Count"
+            title_text="Eventos de muerte entre fumadores - Fumador = 1 No fumador = 0"
         ) 
 
         # Guardar la gráfica en un archivo JPEG
@@ -89,7 +89,7 @@ class SparkServices:
         fig = px.pie(df, values='anaemia',names='DEATH_EVENT', title='Anaemia Death Event Ratio')
         fig.update_traces(textposition='inside', textinfo='percent+label') 
         fig.update_layout(
-            title_text="Anaemia Death Event Count"
+            title_text="Recuento de eventos de muerte por anemia - Anemia = 1 No anemia = 0"
         ) 
 
         # Guardar la gráfica en un archivo JPEG
@@ -108,7 +108,7 @@ class SparkServices:
         fig = px.pie(df, values='diabetes',names='DEATH_EVENT', title='Diabetes Death Event Ratio')
         fig.update_traces(textposition='inside', textinfo='percent+label') 
         fig.update_layout(
-            title_text="Diabetes Death Event Count"
+            title_text="Recuento de eventos de muerte por diabetes - Diabetes = 1 No diabetes = 0"
         ) 
 
         # Guardar la gráfica en un archivo JPEG
@@ -127,7 +127,7 @@ class SparkServices:
         fig = px.pie(df, values='high_blood_pressure',names='DEATH_EVENT', title='High Blood Pressure Death Event Ratio')
         fig.update_traces(textposition='inside', textinfo='percent+label') 
         fig.update_layout(
-            title_text="High Blood Pressure Death Event Count"
+            title_text="Recuento de eventos de muerte por presión arterial alta"
         ) 
 
         # Guardar la gráfica en un archivo JPEG
