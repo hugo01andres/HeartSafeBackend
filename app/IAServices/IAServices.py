@@ -19,7 +19,7 @@ class IAServices:
     def __init__(self):
         print("IA.__init__")
 
-    def get_healthy_recipes(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking):
+    def get_healthy_recipes(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking, death_event):
         print(age)
         print(anaemia)
         if anaemia == False:
@@ -81,7 +81,7 @@ class IAServices:
 
         return response
         
-    def get_healthy_exercises(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking):
+    def get_healthy_exercises(self, age, anaemia, creatinine_phosphokinase, diabetes, ejection_fraction, high_blood_pressure, platelets, serum_creatinine, serum_sodium, sex, smoking, death_event):
         print(age)
         print(anaemia)
         if anaemia == False:
