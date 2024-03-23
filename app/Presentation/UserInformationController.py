@@ -12,8 +12,8 @@ UserInformation, GetPredictionResponse = user_information_dto(api)
 
 
 """ Este controlador es el que se encarga de hacer la predicción de la muerte del paciente """
-@api.route('/analysisprediction', strict_slashes=False)
-class RunAnalysis(Resource):
+@api.route('/', strict_slashes=False)
+class PostInformation(Resource):
     @inject
     def __init__(self, spark_services: SparkServices, ia_services: IAServices, **kwargs):
         self.spark_services = spark_services
@@ -25,26 +25,14 @@ class RunAnalysis(Resource):
     @api.marshal_with(GetPredictionResponse)
     def post(self):
         """
-        Calcular la prediccion de muerte de un paciente por ataque al corazón
-
-        Este endpoint recibe la información de un paciente y devuelve la probabilidad 
-        de que el paciente muera por un ataque al corazón
+        Este endpoint recibe la información del usuario y la persiste en el .csv
 
         Parametros:
            Revisar el UserInformationDTO en especial UserInformation
-        
-        Devuelve:
-            - death_prediction: La probabilidad de que el paciente muera por un ataque al corazón
-
-        Ejemplo:
-            {
-                "death_prediction": "47%"
-            }
         """
-        death_prediction = self.spark_services.get_prediction(**api.payload) #TODO: Emiliano y Raul la estan haciendo
-        print("Predicción Controller: ", death_prediction)
-        # TODO: Retornar death_prediction
-        return {'death_prediction': "47%"}, 200
+        self.spark_services.persist_data(api.payload)
+
+        return 200
 
 
 
@@ -79,9 +67,11 @@ class AnalysisPDF(Resource):
             }
         """
         data = api.payload.copy()
-        # Si data existe en el diccionario share_data y heart_problems_recently
-        if 'share_data' in data and 'heart_problems_recently' in data: self.spark_services.persist_data(api.payload)
-        #if (data['share_data'] and data['heart_problems_recently']): self.spark_services.persist_data(api.payload)
+        
+        if data['share_data']:
+            self.spark_services.persist_data(data)
+
+        del api.payload['share_data']        
 
         json_graficas_y_descripciones = self.spark_services.get_graficas_y_descripciones() #Imagenes
         healthy_recipes = self.ia_services.get_healthy_recipes(**api.payload) # TODO: Hugo la esta haciendo

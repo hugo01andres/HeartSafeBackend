@@ -14,17 +14,18 @@ class SparkServices:
     def get_spark_session(self):
         print("get_spark_session called")
 
-    def persist_data(self, userInformation):
+    def persist_data(self, data):
         try:
             df = self.spark.read.csv('file:////home/data/heart_failure_clinical_records_dataset.csv', header=True, inferSchema=True)
             df_pandas = df.toPandas()
+                    
+            data['DEATH_EVENT'] = int(data['death_event'])
+            data['time'] = 0
 
-            print(df_pandas)
-        
-            userInformation.pop('share_data', None)
-            userInformation.pop('heart_problems_recently', None)
-            userInformation['DEATH_EVENT'] = 0
-            df_pandas = pd.concat([df_pandas, pd.DataFrame(userInformation, index=[0])], ignore_index=True)
+            data.pop('share_data', None)
+            data.pop('death_event', None)            
+
+            df_pandas = pd.concat([df_pandas, pd.DataFrame(data, index=[0])], ignore_index=True)
             df_pandas.to_csv('/home/data/heart_failure_clinical_records_dataset.csv', index=False)
         except Exception as e:   
             print(e)
